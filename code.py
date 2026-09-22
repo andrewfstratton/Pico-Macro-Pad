@@ -15,6 +15,7 @@ from adafruit_hid.consumer_control import ConsumerControl
 from adafruit_hid.consumer_control_code import ConsumerControlCode
 
 from digitalio import DigitalInOut, Direction, Pull
+
 cs = DigitalInOut(board.GP17)
 cs.direction = Direction.OUTPUT
 cs.value = 0
