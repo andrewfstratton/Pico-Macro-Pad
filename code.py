@@ -2,6 +2,7 @@ import time
 import board
 import busio
 import usb_hid
+from hid_gamepad import Gamepad
 
 from adafruit_bus_device.i2c_device import I2CDevice
 import adafruit_dotstar
@@ -23,6 +24,7 @@ i2c = busio.I2C(board.GP5, board.GP4)
 device = I2CDevice(i2c, 0x20)
 kbd = Keyboard(usb_hid.devices)
 layout = KeyboardLayoutUS(kbd)
+gamepad = Gamepad(usb_hid.devices)
 
 def read_button_bits():
     with device:
@@ -57,9 +59,11 @@ while True:
             if changed:
                 pressed = (button_bits & bit_mask)
                 if pressed == 0: # i.e. unset is pressed
-                    layout.write(f"+{str(button)} ")
+                    print(f"+{str(button)} ")
+                    gamepad.press_buttons(button + 1)
                 else:
-                    layout.write(f"-{str(button)} ")
+                    print(f"-{str(button)} ")
+                    gamepad.release_buttons(button + 1)
         last_button_bits = button_bits
 
         # pixels[2] = colourwheel(2 * 16)  # Map pixel index to 0-255 range

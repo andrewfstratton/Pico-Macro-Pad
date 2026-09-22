@@ -23,4 +23,5 @@ Use Shift-Ctrl-P then type Circuit and choose:
 - open serial monitor (had to restart again)
 - I get LOTS of open/close serial port - likely due to CrowdStrike :(
 
-  
+  N.B. boot.py isn't reloaded on a soft boot - you must power cycle the pico
+  The reccomendation is also to have windows uninstall the device and remove the driver
