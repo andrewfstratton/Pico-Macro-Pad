@@ -30,11 +30,12 @@ _gamepad_device = usb_hid.Device(
     report_descriptor=GAMEPAD_REPORT_DESCRIPTOR,
     usage_page=0x01,
     usage=0x05,
-    report_ids=(4,),
     in_report_lengths=(6,),
     out_report_lengths=(0,),
 )
 
-usb_hid.enable((usb_hid.Device.KEYBOARD,
+usb_hid.enable((
+    usb_hid.Device.KEYBOARD,
     usb_hid.Device.CONSUMER_CONTROL,
-    _gamepad_device))
+    _gamepad_device,
+))
